@@ -5,8 +5,7 @@ import { useEffect, useState } from 'react'
 function App() {
 
   const[task , settask] = useState('');
-  const[date , setdate] = useState('');
-  const [login , setlogin] = useState('false');
+  const[date , setdate] = useState('');  
   const [ password , setpassword] = useState('');
   const [ username , setusername] = useState('');
   
@@ -48,7 +47,6 @@ settasks(tasks.filter((_,i) => i !== index))
 }
 
 
-
 const edittask = (index) =>{
 
   const updatetask = prompt('enter your task' , tasks[index].task);
@@ -61,19 +59,6 @@ const edittask = (index) =>{
   }
 }
 
-const loginfn = () =>{
-if(username=='user' && password === 'welcome'){
-  setlogin(true);
-  setusername('');
-  setpassword('');
-  
-}
-
-}
-
-const logoutfn = () =>{
-  setlogin(false);
-}
 
 
 
@@ -83,26 +68,16 @@ const logoutfn = () =>{
     <div className=' border-2 mt-5 rounded-xl bg-gray-200 sm:w-2/6 w-80 text-center' >
     <div className=' flex sm:justify-between gap-5 text-3xl italic font-bold underline  mt-5 pl-10 pr-2'>
       TODO-LIST
-      { login && (
-
-<button className='text-lg bg-gray-500 text-white  rounded-xl w-20  ' onClick={logoutfn}>Logout</button>
-    )}
+     
 
      
     </div>
 
    
     
-    { !login ? (
+   
 
-   <div className='flex flex-col gap-5 mt-10  items-center'>
-<input className='border-2 border-gray-400 w-3/4 p-2 rounded-xl' type="text" placeholder='username' value={username} onChange={(e) => setusername(e.target.value)}/>
-<input className='border-2 border-gray-400 w-3/4 p-2 rounded-xl' type="password" placeholder='password' value={password} onChange={(e) => setpassword(e.target.value)} />
-<button className='bg-black text-white w-40 p-1 text-xl rounded-xl' onClick={loginfn}>login</button>
-
-
-   </div>
-    ) :( 
+     
       <div>
         
      
@@ -140,7 +115,7 @@ const logoutfn = () =>{
     </div>
     </div>
 
-)}
+
     </div>
     
     </div>
