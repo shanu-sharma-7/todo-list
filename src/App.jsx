@@ -6,8 +6,12 @@ function App() {
 
   const[task , settask] = useState('');
   const[date , setdate] = useState('');  
-  const [ authenticated , setauthenticated] = useState(false);
-  const [ username , setusername] = useState('');
+  const [ authenticated , setauthenticated] = useState(()=>{
+    return localStorage.getItem('authenticated')==='true';
+  })
+  const [ username , setusername] = useState(()=>{
+    return localStorage.getItem("username") || "";
+  })
   const [password , setpassword] = useState('');
   const [priority , setpriority] = useState('medium');
 
@@ -65,6 +69,8 @@ const edittask = (index) =>{
 const login = () =>{
   if(username && password){
     setauthenticated(true);
+     localStorage.setItem("authenticated" , "true")
+     localStorage.setItem("username" , username)
     
   } else{
     alert('Enter details')
@@ -73,6 +79,8 @@ const login = () =>{
 
 const logout = () =>{
   setauthenticated(false);
+  localStorage.removeItem("authenticated");
+  localStorage.removeItem("username");
   setusername('');
   setpassword('');
 }
